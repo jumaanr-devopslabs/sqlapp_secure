@@ -123,7 +123,7 @@ Should look something like this:
 2. **Deployment**:
    - **Agent Job**: No additional configurations required.
    - **Azure SQL Table Creation**:
-     - Update the inline script with the correct SQL query: [SQL Script](script.sql)  
+     - Update the inline script with the correct SQL query: [SQL Script](./scripts/script.sql)  
      
 
    - **Azure WebApp Deploy**: Deploy the web application.
@@ -134,7 +134,7 @@ Should look something like this:
      - **Resource Group**: *[Select your resource group]*
      - **Slot**: `production`
      - **Application Configuration Settings**:
-       - **Connection Strings**: [Connection String Setting](ConnectionStringSetting.json)
+       - **Connection Strings**: [Connection String Setting](./scripts/ConnectionStringSetting.json)
          - **Name**: `SQLConnection`
          - **Value**: *"Server=tcp:appserver6000.database.windows.net,1433;Initial Catalog=appdb;Persist Security Info=False;User ID=sqlusr;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",*
          - **Type**: `SQLAzure`
