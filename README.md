@@ -94,7 +94,7 @@ Look at ProductService.cs
 3. Ensure to publish the `ArtifactStagingDirectory` as an artifact called `sql-secure-artifact`.
 4. Run the build pipeline.
 
-*Note: Explanation of Azure Pipeline YAML file to be added later.*
+[Azure Pipeline YAML File Explanation](About_Pipeline.md)
 
 ## Release Pipeline Setup
 
