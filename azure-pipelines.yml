@@ -40,4 +40,4 @@ steps:
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'sqlapp--secure-artifact'
+    artifactName: 'sqlapp-secure-artifact'
