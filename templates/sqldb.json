@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  //SQL Server Creation : https://learn.microsoft.com/en-us/azure/templates/microsoft.sql/servers?pivots=deployment-language-arm-template
+  //SQL Database : https://learn.microsoft.com/en-us/azure/templates/microsoft.sql/servers/databases?pivots=deployment-language-arm-template
+  "parameters": {
+    "sqlLogin": {
+      "type": "string",
+      "metadata": {
+        "description": "Admin username of the SQL Database Server"
+      }
+    },
+    "sqlPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for the SQL Database Server"
+      }
+    }
+  },
+  "functions": [],
+  "variables": {
+    "sql-server": "sqlsvrazdevops8900",
+    "sqldb": "appdbazdevops8900"
+  },
+  "resources": [
+    {
+      "name": "[variables('sql-server')]",
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2021-11-01",
+      "location": "[resourceGroup().location]", //here sqlservers can only be created in eastus2 , not eastus1 . Therefore give the direct location name
+      "tags": {
+        "project": "iaac"
+      },
+      "properties": {
+        "administratorLogin": "[parameters('sqlLogin')]", //we are going to accept these values at runtime, so no clear text secrets
+        "administratorLoginPassword": "[parameters('sqlPassword')]"
+      }
+    },
+  {
+    "name": "[format('{0}/{1}',variables('sql-server'),variables('sqldb'))]", //append the strings 
+    "type": "Microsoft.Sql/servers/databases",
+    "apiVersion": "2021-11-01",
+    "location": "[resourceGroup().location]",
+    "tags": {
+      "project": "iaac"
+    },
+    "dependsOn": [
+      "[resourceId('Microsoft.Sql/servers', variables('sql-server'))]"
+    ],
+    "sku": {
+        "name": "Basic",
+        "tier": "Basic"
+    },
+    "properties": {
+      "publicNetworkAccess": "Enabled"
+    }
+  }
+  ],
+  "outputs": {}
+}
