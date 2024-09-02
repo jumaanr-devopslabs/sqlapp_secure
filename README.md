@@ -1,3 +1,6 @@
+# Deploy a SQL Secure App using Azure Pipeline : iaac project
+
+In this branch , the secure sqlwebapp is deployed to Azure infrastructure writtent using ARM Templates.
 
 ---
 
