@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- iaac
+- iaac_arn
 
 pool:
   vmImage: 'windows-latest'
@@ -38,6 +38,13 @@ steps:
 # We still need to take the staging directory files and publish it as a build artifact
 
 - task: PublishPipelineArtifact@1
+  displayName: 'Publish the Builds directory to the Pipeline'
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'sqlapp-secure-artifact'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish the Sources to Pipeline'
+  inputs:
+    TargetPath: '$(Build.SourcesDirectory)/sqlapp/templates'
+    ArtifactName: 'template-artifact'
