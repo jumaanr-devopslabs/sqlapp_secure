@@ -8,8 +8,8 @@
   "variables": {
     "appsvcpln": "[concat('appsvcpln',uniqueString(resourceGroup().id))]",
     "webapp": "[concat('webapp',uniqueString(resourceGroup().id))]",
-    "dbdeployment_template_url": "https://raw.githubusercontent.com/jumaanr/arm-deployments/main/Dynamic%20Resource%20Names/sqldb.json",
-    "dbparam_template_url": "https://raw.githubusercontent.com/jumaanr/arm-deployments/main/Dynamic%20Resource%20Names/parameter.json"
+    "dbdeployment_template_url": "https://sgaaztestlabeastus2.blob.core.windows.net/armtemplates/sqldb.json",
+    "dbparam_template_url": "https://sgaaztestlabeastus2.blob.core.windows.net/armtemplates/parameter.json"
 
   },
   "resources": [
