@@ -47,4 +47,4 @@ steps:
   displayName: 'Publish the Sources to Pipeline'
   inputs:
     TargetPath: '$(Build.SourcesDirectory)/Templates'
-    ArtifactName: 'template-majestic'
+    ArtifactName: 'template-drn'
