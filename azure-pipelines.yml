@@ -43,8 +43,7 @@ steps:
     targetPath: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'sqlapp-secure-artifact'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish the Sources to Pipeline'
+- task: PublishPipelineArtifact@1
   inputs:
-    TargetPath: '$(Build.SourcesDirectory)/sqlapp/Templates'
-    ArtifactName: 'template-artifact'
+    targetPath: '$(Build.SourcesDirectory)/sqlapp/Templates' 
+    artifactName: 'template-artifactx'
