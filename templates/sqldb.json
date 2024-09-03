@@ -19,8 +19,8 @@
   },
   "functions": [],
   "variables": {
-    "sql-server": "sqlsvrazdevops8900",
-    "sqldb": "appdbazdevops8900"
+    "sql-server": "[concat('sqlserver',uniqueString(resourceGroup().id))]",
+    "sqldb": "[concat('sqldb',uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
@@ -56,5 +56,10 @@
     }
   }
   ],
-  "outputs": {}
+  "outputs": {
+    "sqlserverfqdn": {
+      "type": "string",
+      "value": "[reference(variables('sql-server')).fullyQualifiedDomainName]" //https://techcommunity.microsoft.com/t5/azure-database-support-blog/arm-template-outputs-for-azure-sql-database/ba-p/368821
+    }
+  }
 }

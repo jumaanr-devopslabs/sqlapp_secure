@@ -6,15 +6,15 @@
   "parameters": {},
   "functions": [],
   "variables": {
-    "app_serviceplan": "appsvsplneastus28900",
-    "webapp": "webappeastus028900",
-    "dbdeployment_template_url": "https://sgaaztestlabeastus2.blob.core.windows.net/azdevopsdeploymenttemplates/sqldb.json",
-    "dbparam_template_url": "https://sgaaztestlabeastus2.blob.core.windows.net/azdevopsdeploymenttemplates/parameter.json"
+    "appsvcpln": "[concat('appsvcpln',uniqueString(resourceGroup().id))]",
+    "webapp": "[concat('webapp',uniqueString(resourceGroup().id))]",
+    "dbdeployment_template_url": "https://raw.githubusercontent.com/jumaanr/arm-deployments/main/Dynamic%20Resource%20Names/sqldb.json",
+    "dbparam_template_url": "https://raw.githubusercontent.com/jumaanr/arm-deployments/main/Dynamic%20Resource%20Names/parameter.json"
 
   },
   "resources": [
     {
-      "name": "[variables('app_serviceplan')]",
+      "name": "[variables('appsvcpln')]",
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2023-01-01",
       "location": "[resourceGroup().location]",
@@ -26,7 +26,7 @@
         "project": "iaac"
       },
       "properties": {
-        "name": "[variables('app_serviceplan')]"
+        "name": "[variables('appsvcpln')]"
       }
     },
     {
@@ -40,15 +40,15 @@
         "project": "iaac"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms', variables('app_serviceplan'))]" //ensuring to create app service plan first
+        "[resourceId('Microsoft.Web/serverfarms', variables('appsvcpln'))]" //ensuring to create app service plan first
       ],
       "properties": {
         "name": "[variables('webapp')]",
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('app_serviceplan'))]" //linking app service plan with the webapp
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appsvcpln'))]" //linking app service plan with the webapp
       }
     },//ADD The Linked Template Here
     {
-      "name": "linkedDeployment1",
+      "name": "linkedTemplate1",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2024-03-01",
       "properties": {
@@ -64,5 +64,14 @@
       }
     }
   ],
-  "outputs": {}
+  "outputs": {
+    "webappname": {
+      "type": "string",
+      "value": "[variables('webapp')]"
+    },
+    "sqlserverfqdn": {
+      "type": "string",
+      "value": "[reference('linkedTemplate1').outputs.sqlserverfqdn.value]" //here we are importing the output value from the template linked (sqldb.json)
+    }
+  }
 }
