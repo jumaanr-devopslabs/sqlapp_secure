@@ -46,5 +46,5 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish the Sources to Pipeline'
   inputs:
-    TargetPath: '$(Build.SourcesDirectory)/Templates'
-    ArtifactName: 'template-drn'
+    TargetPath: '$(Build.SourcesDirectory)/sqlapp/Templates'
+    ArtifactName: 'template-artifact'
