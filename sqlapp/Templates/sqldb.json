@@ -20,7 +20,7 @@
   "functions": [],
   "variables": {
     "sql-server": "[concat('sqlserver',uniqueString(resourceGroup().id))]",
-    "sqldb": "[concat('sqldb',uniqueString(resourceGroup().id))]"
+    "sqldb": "appdb"
   },
   "resources": [
     {
