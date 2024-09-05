@@ -98,6 +98,7 @@ Look at ProductService.cs
 
 ## Release Pipeline Setup
 
+(Use the WebApp Secure.json file to deploy the release pipeline using the import option ) 
 The release pipeline consists of two parts:
 
 1. **Artifact**: Ensure the correct artifact is specified.
