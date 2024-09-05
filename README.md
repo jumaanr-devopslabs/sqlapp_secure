@@ -126,7 +126,7 @@ Should look something like this:
      - Update the inline script with the correct SQL query: [SQL Script](./scripts/script.sql)  
      
 
-   - **Azure WebApp Deploy**: Deploy the web application.
+   - **Azure WebApp Deploy**: Deploy the web application. Search for 'Azure Web App' for windows and linux hosts. WebApp name is jus the webapp name in Azure , not fqdn. 
    - **Azure App Service Settings**:
      - **Display Name**: Azure App Service Settings
      - **Azure Subscription**: *[Select your subscription]*
